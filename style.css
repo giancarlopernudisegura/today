@@ -12,8 +12,12 @@ body {
 	align-items: center;
 }
 
-.main ul {
+.main > div {
 	max-width: 80%;
+}
+
+.main h1 {
+	text-align: center;
 }
 
 .emoji {

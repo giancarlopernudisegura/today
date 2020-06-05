@@ -1,4 +1,4 @@
-function fetchWiki(date, callback) {
+function fetchWikiDay(date, callback) {
 	const url = `https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&prop=extracts&explaintex&exsectionformat=wiki&redirects=1&titles=${date.month}%20${date.day}`
 	fetch(url, {
 		method: 'GET',
@@ -9,6 +9,19 @@ function fetchWiki(date, callback) {
 	.then(res => res.json())
 	.then(data => callback(data.query.pages))
 }
+
+function fetchWikiMonth(callback) {
+	const url = `https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&prop=extracts&explaintex&exsectionformat=wiki&redirects=1&titles=List%20of%20month-long%20observances`
+	fetch(url, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+	.then(res => res.json())
+	.then(data => callback(data.query.pages))
+}
+
 
 function getDate() {
 	const date = new Date()
@@ -51,13 +64,12 @@ function reorder(list) {
 		}
 	}
 	const reorderedArray = [...priority, ...arr]
-	console.log(reorderedArray)
 	return reorderedArray
 }
 
 function appendHolidays(data) {
 	const list = getHolidays(data)
-	const main = document.querySelector('.main')
+	const main = document.querySelector('.day')
 	for (let item of list.children) {
 		insertEmojis(item.innerHTML)
 		item.innerHTML = insertEmojis(item.innerHTML)
@@ -69,10 +81,24 @@ function appendHolidays(data) {
 	main.append(ul)
 }
 
-function getHolidays(pages) {
+function appendMonths(data) {
+	const html = getContent(data)
+	const ul = document.createElement('ul')
+	const month = new Date().getMonth()
+	ul.append(html.querySelectorAll('ul')[month])
+	const main = document.querySelector('.month')
+	main.append(ul)
+}
+
+function getContent(pages) {
 	const firstPage = Object.keys(pages)[0]
 	const data = pages[firstPage].extract
 	const html = parseHTML(data)
+	return html
+}
+
+function getHolidays(pages) {
+	const html = getContent(pages)
 	const holidays = html.querySelectorAll('h2 span')
 	for (let h in holidays) {
 		if (holidays[h].id === 'Holidays_and_observances') {
@@ -95,6 +121,7 @@ function randomColor() {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-	fetchWiki(getDate(), appendHolidays)
+	fetchWikiDay(getDate(), appendHolidays)
+	fetchWikiMonth(appendMonths)
 	document.body.style.background = randomColor()
 })
