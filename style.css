@@ -28,8 +28,28 @@ body {
 	font-size: 1.2em;
 }
 
+footer {
+	padding: .5rem 2rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+footer a {
+	color: white;
+	text-shadow: 0 0 1rem #0008;
+}
+
+footer a::before {
+	content: '+';
+}
+
 @media (max-width: 780px) {
 	.main > div {
 		width: 90%;
+	}
+
+	footer {
+		flex-direction: column;
 	}
 }
