@@ -13,7 +13,7 @@ body {
 }
 
 .main > div {
-	max-width: 80%;
+	width: 60%;
 }
 
 .main h1 {
@@ -22,4 +22,10 @@ body {
 
 .emoji {
 	font-size: 1.2em;
+}
+
+@media (max-width: 780px) {
+	.main > div {
+		width: 90%;
+	}
 }
