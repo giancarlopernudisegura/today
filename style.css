@@ -20,6 +20,10 @@ body {
 	text-align: center;
 }
 
+.main ul {
+	list-style-type: '👉 ';
+}
+
 .emoji {
 	font-size: 1.2em;
 }
