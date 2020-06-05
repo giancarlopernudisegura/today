@@ -241,6 +241,8 @@ emojiDict = {
 	'U.S. Outlying Islands': '🇺🇲',
 	'United Nations': '🇺🇳',
 	'United States': '🇺🇸',
+	'US': '🇺🇸',
+	'USA': '🇺🇸',
 	'Uruguay': '🇺🇾',
 	'Uzbekistan': '🇺🇿',
 	'Vatican City': '🇻🇦',

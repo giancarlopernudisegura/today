@@ -71,7 +71,6 @@ function appendHolidays(data) {
 	const list = getHolidays(data)
 	const main = document.querySelector('.day')
 	for (let item of list.children) {
-		insertEmojis(item.innerHTML)
 		item.innerHTML = insertEmojis(item.innerHTML)
 	}
 	const ul = document.createElement('ul')
@@ -83,11 +82,13 @@ function appendHolidays(data) {
 
 function appendMonths(data) {
 	const html = getContent(data)
-	const ul = document.createElement('ul')
 	const month = new Date().getMonth()
-	ul.append(html.querySelectorAll('ul')[month])
+	const ul = html.querySelectorAll('ul')[month]
 	const main = document.querySelector('.month')
 	main.append(ul)
+	for (let item of ul.children) {
+		item.innerHTML = insertEmojis(item.innerHTML)
+	}
 }
 
 function getContent(pages) {
