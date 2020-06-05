@@ -49,6 +49,11 @@ function insertEmojis(str) {
 		const emoji = emojiDict[item]
 		str = str.replace(`(${item})`, `<span class="emoji">${emoji}</span>`)
 	}
+	prideWords.map(str => `(${str})`)
+	const prideRegex = new RegExp(`${prideWords.join('|')}`, 'i')
+	if (prideRegex.test(str)) {
+		str += ` ${emojiDict.pride}`
+	}
 	return str
 }
 

@@ -1,4 +1,5 @@
-emojiDict = {
+const emojiDict = {
+	'pride': '🏳️‍🌈',
 	'International': '🌍',
 	'Ascension Island': '🇦🇨',
 	'Andorra': '🇦🇩',
@@ -261,3 +262,13 @@ emojiDict = {
 	'Zambia': '🇿🇲',
 	'Zimbabwe': '🇿🇼',
 }
+
+const prideWords = [
+	'lgbt',
+	'gay',
+	'lesbian',
+	'bisexual',
+	'queer',
+	'transgender',
+	'homosexual'
+]
